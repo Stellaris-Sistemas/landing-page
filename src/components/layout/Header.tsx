@@ -36,11 +36,11 @@ export function Header() {
           scrolled ? "bg-bg/70 backdrop-blur-md" : "bg-transparent",
         )}
       >
-        <div className="container-page flex h-full items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr]">
+        <div className="container-page flex h-full items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-x-8">
           <Logo className="justify-self-start" />
 
           <nav aria-label="Principal" className="hidden lg:block">
-            <ul className="flex items-center gap-10">
+            <ul className="flex items-center gap-6 xl:gap-10">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <a

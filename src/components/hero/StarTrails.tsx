@@ -1,5 +1,5 @@
 import { useId, type CSSProperties } from "react";
-import { STAR_PATH } from "@/components/brand/NorthStar";
+import { STAR_PATH } from "@/components/brand/StellarisStar";
 import { cn } from "@/lib/cn";
 
 const C = 380;

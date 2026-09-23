@@ -26,6 +26,7 @@
 
   --radius-btn: 12px;
   --radius-btn-inner: 10.5px;
+  --radius-card: 16px;
 
   --tracking-eyebrow: 0.2em;
   --tracking-wordmark: 0.06em;
@@ -243,6 +244,79 @@
   .hero-item {
     animation: rise-in 0.9s var(--ease-soft) both;
     animation-delay: var(--delay, 0s);
+  }
+
+  /* ServiceCard: cores translúcidas via color-mix() (mesmo padrão do
+     .beam-btn) para não colidir com a camada de utilitários do Tailwind,
+     já que o hover precisa sobrescrever background/border/color. O brilho
+     que segue o cursor é um ::before cuja posição vem de --mx/--my,
+     gravadas via ref (sem re-render). */
+  .service-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    transition:
+      transform 0.25s,
+      border-color 0.25s;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0;
+      background: radial-gradient(
+        420px circle at var(--mx, 50%) var(--my, 50%),
+        color-mix(in srgb, var(--color-brand) 20%, transparent),
+        transparent 60%
+      );
+      transition: opacity 0.25s;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: color-mix(in srgb, var(--color-brand-light) 45%, transparent);
+      }
+
+      &:hover::before {
+        opacity: 1;
+      }
+
+      &:hover .service-card-icon {
+        background: color-mix(in srgb, var(--color-brand) 30%, transparent);
+        border-color: color-mix(in srgb, var(--color-glow) 50%, transparent);
+        color: var(--color-glow);
+      }
+
+      &:hover .service-card-number {
+        color: var(--color-brand-light);
+      }
+    }
+
+    /* O "sobe" do card é a única parte que conta como movimento: some com
+       prefers-reduced-motion, enquanto borda acesa e brilho do cursor ficam. */
+    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+      &:hover {
+        transform: translateY(-3px);
+      }
+    }
+  }
+
+  .service-card-icon {
+    background: color-mix(in srgb, var(--color-brand) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-brand-light) 25%, transparent);
+    color: var(--color-brand-light);
+    transition:
+      background-color 0.25s,
+      border-color 0.25s,
+      color 0.25s;
+  }
+
+  .service-card-number {
+    color: var(--color-border-strong);
+    transition: color 0.25s;
   }
 }
 
