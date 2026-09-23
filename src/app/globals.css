@@ -1,0 +1,303 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Tokens de design — única fonte de cores, fontes e medidas.
+   A paleta padrão do Tailwind é desligada: só estas cores existem.
+   ============================================================ */
+@theme {
+  --color-*: initial;
+
+  --color-bg-deep: #07090d;
+  --color-bg: #0b0e14;
+  --color-surface-1: #11151d;
+  --color-surface-2: #171c26;
+  --color-border: #232a36;
+  --color-border-strong: #3a4556;
+  --color-text: #f0f4f8;
+  --color-text-2: #9aa4b2;
+  /* Briefing: #6B7585 (3,7–4,3:1). Ajustado para passar AA em todos os fundos. */
+  --color-text-3: #7a8494;
+  --color-brand: #0052b4;
+  --color-brand-hover: #0a63d1;
+  --color-brand-light: #5b9bf0;
+  --color-glow: #8fb8ff;
+  --color-beam: #dce8ff;
+  --color-warm: #e8c79a;
+
+  --radius-btn: 12px;
+  --radius-btn-inner: 10.5px;
+
+  --tracking-eyebrow: 0.2em;
+  --tracking-wordmark: 0.06em;
+
+  --ease-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-montserrat), var(--font-inter), sans-serif;
+}
+
+:root {
+  --header-h: 64px;
+}
+
+@media (width >= 64rem) {
+  :root {
+    --header-h: 80px;
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    background-color: var(--color-bg);
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  section[id] {
+    scroll-margin-top: var(--header-h);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-light);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: var(--color-brand);
+    color: var(--color-text);
+  }
+}
+
+/* ---------- Utilitários de layout e tipografia ---------- */
+
+@utility container-page {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 20px;
+
+  @media (width >= 64rem) {
+    padding-inline: 80px;
+  }
+}
+
+@utility eyebrow {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--color-brand-light);
+}
+
+@utility heading-display {
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+
+  @media (width >= 64rem) {
+    letter-spacing: -0.028em;
+  }
+}
+
+/* ---------- Componentes (em layer, para que utilitários possam sobrescrever) ---------- */
+
+@layer components {
+  /* BeamButton: o <a> externo é a "borda"; o feixe é um traço SVG que percorre
+     o perímetro real (pathLength), não um ângulo — por isso anda a velocidade
+     constante mesmo num botão bem mais largo que alto (um conic-gradient não
+     conseguiria: giraria a ângulo constante, mas isso cruza as bordas curtas
+     quase instantaneamente e rasteja nas longas). Mesma técnica do feixe da
+     estrela em StarTrails. */
+  .beam-btn {
+    position: relative;
+    display: inline-flex;
+    padding: 1.5px;
+    border-radius: var(--radius-btn);
+    box-shadow: 0 0 36px color-mix(in srgb, var(--color-brand) 35%, transparent);
+  }
+
+  .beam-ring {
+    position: absolute;
+    inset: 0;
+    /* SVG é um elemento substituído: inset:0 sozinho não o estica (mantém o
+       tamanho intrínseco 300x150), por isso o width/height explícitos. */
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    overflow: visible;
+
+    & rect {
+      fill: none;
+    }
+
+    & .beam-ring-base {
+      stroke: var(--color-glow);
+      stroke-opacity: 0.18;
+      stroke-width: 1.5;
+    }
+
+    & .beam-ring-tail,
+    & .beam-ring-head {
+      stroke-linecap: round;
+      animation: beam-trace 3.2s linear infinite;
+    }
+
+    & .beam-ring-tail {
+      stroke: var(--color-glow);
+      stroke-opacity: 0.55;
+      stroke-width: 1.5;
+      stroke-dasharray: 130 870;
+    }
+
+    & .beam-ring-head {
+      stroke: var(--color-beam);
+      stroke-width: 1.5;
+      stroke-dasharray: 20 980;
+      animation-delay: -0.1s;
+      filter: drop-shadow(0 0 3px var(--color-glow));
+    }
+  }
+
+  /* StarTrails: a estrela fica parada; o céu gira ao redor (anti-horário). */
+  .trails {
+    --k: 1.4;
+
+    & .trail {
+      stroke-width: calc(var(--w, 1) * var(--k));
+    }
+
+    & .ring {
+      transform-box: view-box;
+      transform-origin: 380px 380px;
+    }
+
+    & .r1 {
+      animation: spin 120s linear infinite;
+    }
+
+    & .r2 {
+      animation: spin 180s linear infinite;
+    }
+
+    & .r3 {
+      animation: spin 260s linear infinite;
+    }
+
+    & .halo {
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    & .beam {
+      stroke-width: 3;
+      stroke-dasharray: 80 920;
+      animation: trace 7s linear infinite;
+    }
+
+    @media (width >= 64rem) {
+      --k: 1;
+
+      & .beam {
+        stroke-width: 2;
+      }
+    }
+  }
+
+  .hero {
+    margin-top: calc(-1 * var(--header-h));
+    padding-top: calc(var(--header-h) + 320px);
+    min-height: 100svh;
+
+    @media (width >= 64rem) {
+      padding-top: var(--header-h);
+      min-height: min(100svh, 900px);
+    }
+  }
+
+  .hero-visual {
+    position: absolute;
+    top: var(--header-h);
+    left: 50%;
+    width: 480px;
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+    animation: fade-in 1.6s ease-out both;
+
+    @media (width >= 64rem) {
+      top: 54%;
+      left: 73%;
+      width: clamp(540px, 52.8vw, 760px);
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .hero-item {
+    animation: rise-in 0.9s var(--ease-soft) both;
+    animation-delay: var(--delay, 0s);
+  }
+}
+
+@keyframes beam-trace {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes trace {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* ---------- Movimento reduzido: tudo estático, no estado final ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0s !important;
+  }
+}
