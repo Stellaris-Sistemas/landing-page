@@ -1,14 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SECTION_TITLE_LG_CLASSES, SectionHeading } from "@/components/ui/SectionHeading";
 import { CONTACT_CTA, SECTIONS, SERVICES_CTA } from "@/lib/constants";
 import { SERVICES } from "@/lib/services";
 import { ServiceCard } from "./ServiceCard";
 
 const SERVICES_SECTION = SECTIONS.find((section) => section.id === "servicos")!;
-
-const TITLE_CLASSES =
-  "font-semibold text-text text-[34px] leading-[1.1] tracking-[-0.025em] lg:text-[52px] lg:leading-[1.06] lg:tracking-[-0.028em]";
 
 export function Services() {
   return (
@@ -23,7 +20,7 @@ export function Services() {
             id="servicos-titulo"
             eyebrow={SERVICES_SECTION.eyebrow}
             title={SERVICES_SECTION.title}
-            titleClassName={TITLE_CLASSES}
+            titleClassName={SECTION_TITLE_LG_CLASSES}
           />
         </Reveal>
 

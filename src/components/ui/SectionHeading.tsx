@@ -13,6 +13,10 @@ type SectionHeadingProps = {
 
 const DEFAULT_TITLE_CLASSES = "heading-display text-[clamp(1.75rem,1.22rem+2.2vw,3rem)] text-text";
 
+/** Título grande das seções de conteúdo (Serviços, Como trabalhamos...): 34px / 52px. */
+export const SECTION_TITLE_LG_CLASSES =
+  "font-semibold text-text text-[34px] leading-[1.1] tracking-[-0.025em] lg:text-[52px] lg:leading-[1.06] lg:tracking-[-0.028em]";
+
 export function SectionHeading({ id, eyebrow, title, aside, titleClassName }: SectionHeadingProps) {
   const heading = (
     <div className={cn("flex max-w-[760px] flex-col gap-4", !!aside && "lg:max-w-[640px]")}>

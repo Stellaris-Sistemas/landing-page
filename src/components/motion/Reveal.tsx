@@ -30,22 +30,23 @@ const VISIBLE: Target = { opacity: 1, y: 0 };
 // Mesmo easing das entradas do hero (--ease-soft: cubic-bezier(.2,.7,.2,1)).
 const EASE_SOFT = [0.2, 0.7, 0.2, 1] as const;
 
+// Sempre o mesmo componente motion, com ou sem movimento reduzido: trocar por um
+// elemento estático no cliente faria a hidratação manter o style="opacity:0" que
+// veio do servidor, e o conteúdo ficaria invisível. O estado final com
+// prefers-reduced-motion vem do CSS ([data-reveal] em globals.css), já no
+// primeiro paint; aqui só zeramos a transição.
 export function Reveal({ children, delay = 0, as = "div", className }: RevealProps) {
   const shouldReduceMotion = useReducedMotion();
   const MotionTag = MOTION_TAGS[as];
 
-  if (shouldReduceMotion) {
-    const Static = as;
-    return <Static className={className}>{children}</Static>;
-  }
-
   return (
     <MotionTag
+      data-reveal=""
       className={className}
       initial={HIDDEN}
       whileInView={VISIBLE}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.9, delay, ease: EASE_SOFT }}
+      transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.9, delay, ease: EASE_SOFT }}
     >
       {children}
     </MotionTag>

@@ -1,4 +1,5 @@
 import { Hero } from "@/components/hero/Hero";
+import { Process } from "@/components/process/Process";
 import { Services } from "@/components/services/Services";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SECTIONS } from "@/lib/constants";
@@ -11,6 +12,8 @@ export default function Home() {
       {SECTIONS.map((section, index) =>
         section.id === "servicos" ? (
           <Services key={section.id} />
+        ) : section.id === "processo" ? (
+          <Process key={section.id} />
         ) : (
           <section
             key={section.id}

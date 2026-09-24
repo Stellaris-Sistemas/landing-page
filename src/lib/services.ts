@@ -17,7 +17,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: "crm",
-    title: "CRM",
+    title: "CRMs",
     description:
       "Centralize o relacionamento com seus clientes em uma única plataforma. Acompanhe oportunidades, histórico e indicadores em um só lugar, sem planilhas e sem complicações.",
     icon: Users,
@@ -30,8 +30,8 @@ export const SERVICES: Service[] = [
     icon: Globe,
   },
   {
-    id: "aplicativos",
-    title: "Aplicativos",
+    id: "aplicativos-mobile",
+    title: "Aplicativos mobile",
     description:
       "Apps pensados para quem vai usá-los todos os dias, de qualquer lugar, seja sua equipe ou seus clientes. Rápidos, simples e conectados aos sistemas já existentes da sua empresa.",
     icon: Smartphone,

@@ -35,11 +35,11 @@ export const HERO = {
 } as const;
 
 export const SECTIONS = [
-  { id: "servicos", eyebrow: "Serviços", title: "O que construímos para a sua empresa" },
+  { id: "servicos", eyebrow: "Serviços", title: "O que construímos para a sua empresa" },
   {
     id: "processo",
     eyebrow: "Como trabalhamos",
-    title: "Do problema à solução, com clareza em cada etapa",
+    title: "O caminho até a solução que você busca",
   },
   { id: "portfolio", eyebrow: "Portfólio", title: "Projetos que já estão em órbita" },
   { id: "sobre", eyebrow: "Sobre nós", title: "Tecnologia com direção" },
