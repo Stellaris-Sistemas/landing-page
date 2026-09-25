@@ -8,8 +8,12 @@ const PROCESS_SECTION = SECTIONS.find((section) => section.id === "processo")!;
 
 export function Process() {
   return (
-    <section id="processo" aria-labelledby="processo-titulo" className="bg-bg py-20 lg:py-[120px]">
-      <div className="container-page flex flex-col gap-12 lg:gap-[72px]">
+    <section
+      id="processo"
+      aria-labelledby="processo-titulo"
+      className="bg-bg pt-20 pb-14 lg:pt-[120px] lg:pb-20"
+    >
+      <div className="container-page flex flex-col gap-8 lg:gap-12">
         <Reveal>
           <SectionHeading
             id="processo-titulo"
