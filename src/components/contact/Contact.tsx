@@ -20,12 +20,14 @@ export function Contact() {
       aria-labelledby="contato-titulo"
       className="relative overflow-hidden bg-surface-1 py-20 lg:min-h-[760px] lg:py-[120px]"
     >
-      {/* Mesma posição horizontal da estrela no hero (73,6%). Entre 1024 e ~1170px
-          o centro recua para depois da coluna de conteúdo (80 + 620 + 32 + 130 =
-          862px), para o card do QR não encostar nos links. */}
-      <div className="pointer-events-none absolute top-[-120px] left-1/2 size-[560px] -translate-x-1/2 opacity-55 lg:top-1/2 lg:left-[max(73.6%,862px)] lg:size-[760px] lg:-translate-y-1/2 lg:opacity-100">
+      {/* Sem rastros nem estrela no mobile: sem o card do QR, sobrava um vazio
+          no centro da órbita. Mesma posição horizontal da estrela no hero
+          (73,6%) no desktop. Entre 1024 e ~1170px o centro recua para depois da
+          coluna de conteúdo (80 + 620 + 32 + 130 = 862px), para o card do QR
+          não encostar nos links. */}
+      <div className="pointer-events-none absolute top-1/2 left-[max(73.6%,862px)] hidden size-[760px] -translate-x-1/2 -translate-y-1/2 lg:block">
         <ContactTrails />
-        <ContactQrCard className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:flex" />
+        <ContactQrCard className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2" />
       </div>
 
       <div className="relative z-10 container-page">
