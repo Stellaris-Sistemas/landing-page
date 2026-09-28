@@ -1,3 +1,4 @@
+import { About } from "@/components/about/About";
 import { Contact } from "@/components/contact/Contact";
 import { Hero } from "@/components/hero/Hero";
 import { Process } from "@/components/process/Process";
@@ -15,6 +16,8 @@ export default function Home() {
           <Services key={section.id} />
         ) : section.id === "processo" ? (
           <Process key={section.id} />
+        ) : section.id === "sobre" ? (
+          <About key={section.id} />
         ) : section.id === "contato" ? (
           <Contact key={section.id} />
         ) : (

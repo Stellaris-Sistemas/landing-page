@@ -42,6 +42,10 @@ export const SECTIONS = [
     title: "O caminho até a solução que você busca",
   },
   { id: "portfolio", eyebrow: "Portfólio", title: "Projetos que já estão em órbita" },
-  { id: "sobre", eyebrow: "Sobre nós", title: "Tecnologia com direção" },
+  {
+    id: "sobre",
+    eyebrow: "Sobre nós",
+    title: "Nosso propósito é tornar a tecnologia uma aliada do seu negócio",
+  },
   { id: "contato", eyebrow: "Contato", title: "Vamos traçar a rota do seu projeto" },
 ] as const;
