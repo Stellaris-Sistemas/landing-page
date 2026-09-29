@@ -1,14 +1,17 @@
-// Ao definir o número real, regenere o QR (public/contact/whatsapp-qr.svg) com:
-// npx --yes qrcode -t svg -d 0B0E14FF -l FFFFFFFF -o public/contact/whatsapp-qr.svg "https://wa.me/<número>"
-// O QR aponta só para o número, sem a mensagem pré-preenchida (mais simples de ler).
+// O QR usa a mesma URL do botão (número + mensagem pré-preenchida), então os
+// dois abrem a conversa exatamente do mesmo jeito. Ao mudar o número ou a
+// mensagem abaixo, regenere o QR (public/contact/whatsapp-qr.svg):
+// 1. Gere a URL: node -e "console.log(require('./src/lib/contact.ts').whatsappHref())" (requer um loader de TS, ex. tsx/ts-node)
+//    ou monte à mão: https://wa.me/<número>?text=<mensagem codificada com encodeURIComponent>
+// 2. npx --yes qrcode -t svg -d 0B0E14FF -l FFFFFFFF -o public/contact/whatsapp-qr.svg "<URL do passo 1>"
 
 export const contact = {
-  whatsappNumber: "5500000000000", // TODO: substituir pelo número real (formato 55 + DDD + número, só dígitos)
+  whatsappNumber: "554399214052",
   whatsappMessage:
     "Olá! Vim pelo site da Stellaris Sistemas e gostaria de conversar sobre um projeto.",
-  email: "contato@stellarissistemas.com.br", // TODO: confirmar o e-mail real
-  instagramHandle: "stellarissistemas", // TODO: confirmar o perfil real
-  instagramUrl: "https://www.instagram.com/stellarissistemas/", // TODO: confirmar o perfil real
+  email: "stellarissistemas@gmail.com",
+  instagramHandle: "stellaris.sistemas",
+  instagramUrl: "https://www.instagram.com/stellaris.sistemas/",
   hours: "Seg. a sex., das 8h às 18h · Atendimento em todo o Brasil", // TODO: confirmar o horário real
 };
 
