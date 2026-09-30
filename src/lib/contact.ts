@@ -15,6 +15,7 @@ export const contact = {
   hours: "Seg. a sex., das 8h às 18h · Atendimento em todo o Brasil", // TODO: confirmar o horário real
 };
 
-export function whatsappHref() {
-  return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`;
+export function whatsappHref(customMessage?: string) {
+  const message = customMessage ?? contact.whatsappMessage;
+  return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }

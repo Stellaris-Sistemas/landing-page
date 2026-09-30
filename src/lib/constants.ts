@@ -41,7 +41,7 @@ export const SECTIONS = [
     eyebrow: "Como trabalhamos",
     title: "O caminho até a solução que você busca",
   },
-  { id: "portfolio", eyebrow: "Portfólio", title: "Projetos que já estão em órbita" },
+  { id: "portfolio", eyebrow: "Portfólio", title: "Projetos que desenvolvemos" },
   {
     id: "sobre",
     eyebrow: "Sobre nós",
