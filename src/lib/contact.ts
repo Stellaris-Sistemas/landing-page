@@ -12,7 +12,7 @@ export const contact = {
   email: "stellarissistemas@gmail.com",
   instagramHandle: "stellaris.sistemas",
   instagramUrl: "https://www.instagram.com/stellaris.sistemas/",
-  hours: "Seg. a sex., das 8h às 18h · Atendimento em todo o Brasil", // TODO: confirmar o horário real
+  hours: "Seg. a sab., das 8h às 20h · Atendimento em todo o Brasil", // TODO: confirmar o horário real
 };
 
 export function whatsappHref(customMessage?: string) {

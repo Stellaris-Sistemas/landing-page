@@ -1,112 +1,95 @@
+export type PortfolioImage = { src: string; alt: string; caption: string };
+
 export type Project = {
-  id: string;
+  slug: string;
   name: string;
   category: string;
-  badge: string;
+  /** Exatamente duas linhas no desktop (1440px). */
   description: string;
-  features: string[];
-  ctaLabel?: string;
-  whatsappMessage?: string;
-  isCustom?: boolean;
+  tags: [string, string, string];
+  /** Carrossel, na ordem de exibição (mínimo 1). Capturas reais: WebP 1600×1000 (16:10). */
+  images: PortfolioImage[];
 };
 
 export const PORTFOLIO_HEADER = {
   eyebrow: "Portfólio",
-  title: "Projetos que desenvolvemos",
-  subtitle:
-    "Soluções desenvolvidas sob medida para transformar processos, automatizar tarefas e gerar resultados.",
-} as const;
-
-export const PORTFOLIO_CTA = {
-  title: "Tem um projeto em mente?",
-  description: "Desenvolvemos sistemas sob medida para as necessidades da sua empresa.",
-  buttonLabel: "Falar sobre meu projeto",
-  whatsappMessage:
-    "Olá! Gostaria de falar sobre um projeto de sistema sob medida para minha empresa.",
+  title: "Conheça alguns dos projetos que já entregamos",
 } as const;
 
 export const PORTFOLIO_PROJECTS: Project[] = [
   {
-    id: "agendou",
-    name: "AGENDOU+",
-    category: "SaaS de gestão para locação de brinquedos e eventos",
-    badge: "SaaS de Gestão",
+    slug: "agendou-plus",
+    name: "Agendou+",
+    category: "SaaS de gestão",
     description:
-      "Plataforma desenvolvida para empresas de locação de brinquedos e estruturas para eventos. Centraliza agendamentos, disponibilidade, contratos, catálogo online, recibos e gestão da operação em um único sistema.",
-    features: [
-      "Gestão de agendamentos",
-      "Controle de disponibilidade",
-      "Contratos digitais",
-      "Catálogo online",
-      "Orçamentos automáticos",
-      "Recibos",
-      "Relatórios e gestão financeira",
+      "Sistema de gestão para locadoras de brinquedos e estruturas para eventos: agenda, contratos, orçamentos, recibos e catálogo online.",
+    tags: ["Agendamentos", "Contratos digitais", "Catálogo online"],
+    images: [
+      {
+        src: "/portfolio/agendou-plus/01-agenda.svg",
+        alt: "Tela de agenda de reservas do Agendou+",
+        caption: "Agenda de reservas",
+      },
+      {
+        src: "/portfolio/agendou-plus/02-contratos.svg",
+        alt: "Tela de contratos digitais do Agendou+",
+        caption: "Contratos digitais",
+      },
+      {
+        src: "/portfolio/agendou-plus/03-catalogo.svg",
+        alt: "Tela do catálogo online do Agendou+",
+        caption: "Catálogo online",
+      },
     ],
-    ctaLabel: "Conhecer projeto",
-    whatsappMessage:
-      "Olá! Vi a plataforma AGENDOU+ no site da Stellaris e gostaria de conhecer a solução para locação e eventos.",
   },
   {
-    id: "pesquisa360",
-    name: "PESQUISA360",
-    category: "Plataforma de pesquisas e coleta de dados",
-    badge: "Coleta de Dados",
+    slug: "pesquisa360",
+    name: "Pesquisa360",
+    category: "Coleta de dados",
     description:
-      "Sistema web desenvolvido para gerenciamento de pesquisas de campo, permitindo estruturar questionários, distribuir entrevistas e acompanhar os dados coletados de forma centralizada.",
-    features: [
-      "Criação e gerenciamento de pesquisas",
-      "Formulários personalizados",
-      "Coleta de entrevistas",
-      "Controle de entrevistadores",
-      "Gestão de perguntas e respostas",
-      "Dashboard administrativo",
-      "Organização e acompanhamento dos dados",
+      "Plataforma web para criar pesquisas de campo, distribuir entrevistas à equipe e acompanhar os dados coletados em um painel.",
+    tags: ["Questionários", "Entrevistas", "Dashboard"],
+    images: [
+      {
+        src: "/portfolio/pesquisa360/01-painel.svg",
+        alt: "Tela do painel de resultados do Pesquisa360",
+        caption: "Painel de resultados",
+      },
+      {
+        src: "/portfolio/pesquisa360/02-builder.svg",
+        alt: "Tela de criação de questionários do Pesquisa360",
+        caption: "Criação de questionários",
+      },
+      {
+        src: "/portfolio/pesquisa360/03-equipe.svg",
+        alt: "Tela de controle de entrevistadores do Pesquisa360",
+        caption: "Controle de entrevistadores",
+      },
     ],
-    ctaLabel: "Conhecer projeto",
-    whatsappMessage:
-      "Olá! Vi a plataforma PESQUISA360 no site da Stellaris e gostaria de conhecer a solução de coleta de dados.",
   },
   {
-    id: "londri-connect",
-    name: "LONDRI CONNECT",
-    category: "Sistema de gestão e locação de equipamentos",
-    badge: "Gestão Operacional",
+    slug: "londri-connect",
+    name: "Londri Connect",
+    category: "Gestão operacional",
     description:
-      "Sistema desenvolvido para empresas que trabalham com locação e gerenciamento de equipamentos, centralizando clientes, equipamentos, funcionários, agenda e operações.",
-    features: [
-      "Cadastro de clientes",
-      "Gestão de equipamentos",
-      "Controle de funcionários",
-      "Agendamentos",
-      "Controle de retirada e devolução",
-      "Registro de fotos",
-      "Dashboard administrativo",
-      "Organização da operação",
+      "Sistema para locadoras de equipamentos: controla clientes, equipe e agenda, com registro de fotos na retirada e na devolução.",
+    tags: ["Equipamentos", "Agendamentos", "Registro de fotos"],
+    images: [
+      {
+        src: "/portfolio/londri-connect/01-equipamentos.svg",
+        alt: "Tela de gestão de equipamentos do Londri Connect",
+        caption: "Gestão de equipamentos",
+      },
+      {
+        src: "/portfolio/londri-connect/02-retirada.svg",
+        alt: "Tela de retirada e devolução com fotos do Londri Connect",
+        caption: "Retirada e devolução com fotos",
+      },
+      {
+        src: "/portfolio/londri-connect/03-operacao.svg",
+        alt: "Tela do painel da operação do Londri Connect",
+        caption: "Painel da operação",
+      },
     ],
-    ctaLabel: "Conhecer projeto",
-    whatsappMessage:
-      "Olá! Vi o sistema LONDRI CONNECT no site da Stellaris e gostaria de saber mais sobre a solução para locação.",
-  },
-  {
-    id: "sistemas-sob-medida",
-    name: "SISTEMAS SOB MEDIDA",
-    category: "Desenvolvimento personalizado",
-    badge: "Sob Demanda",
-    isCustom: true,
-    description:
-      "Além dos produtos apresentados, desenvolvemos softwares e plataformas exclusivas para sua operação — unindo inteligência artificial, gestão financeira, emissão fiscal e integrações com serviços de terceiros.",
-    features: [
-      "Inteligência Artificial e automações",
-      "Gestão financeira, fluxo e conciliação",
-      "Emissão de Notas Fiscais (NF-e/NFS-e)",
-      "Integrações com APIs e terceiros",
-      "Sistemas de gestão e ERPs sob medida",
-      "CRMs e funis operacionais",
-      "Dashboards e relatórios em tempo real",
-      "Plataformas web e sistemas SaaS",
-    ],
-    ctaLabel: "Falar sobre meu projeto",
-    whatsappMessage:
-      "Olá! Gostaria de conversar com a Stellaris sobre o desenvolvimento de um sistema sob medida com IA, integrações e gestão para minha empresa.",
   },
 ];

@@ -1,0 +1,114 @@
+/* ---------- Constelação ---------- */
+
+.flow {
+  stroke-dasharray: 1 12;
+  animation: portfolio-flow 2.6s linear infinite;
+}
+
+@keyframes portfolio-flow {
+  to {
+    stroke-dashoffset: -26;
+  }
+}
+
+.twinkle {
+  animation: portfolio-twinkle 4s ease-in-out infinite;
+}
+
+@keyframes portfolio-twinkle {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Escala em torno do próprio centro (a posição vem do <g> pai). */
+.star {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform 0.3s var(--ease-soft),
+    fill 0.3s,
+    filter 0.3s;
+}
+
+.starGlow {
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-glow) 80%, transparent));
+}
+
+/* ---------- Carrossel ---------- */
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 22px;
+}
+
+/* A tela capturada "sai" da base da moldura: alinhada ao topo, cortada embaixo. */
+.stage {
+  position: relative;
+  background:
+    radial-gradient(
+      circle at 50% 115%,
+      color-mix(in srgb, var(--color-brand) 50%, transparent),
+      color-mix(in srgb, var(--color-brand) 0%, transparent) 62%
+    ),
+    #0d1118;
+}
+
+.stageDesktop {
+  height: 390px;
+  padding: 36px 44px 0;
+}
+
+.stageMobile {
+  aspect-ratio: 16 / 10;
+  padding: 18px 22px 0;
+}
+
+.arrow {
+  background: color-mix(in srgb, var(--color-bg) 82%, transparent);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text);
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    transform 0.1s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .arrow:hover {
+    background: var(--color-brand);
+    border-color: var(--color-glow);
+  }
+}
+
+.arrow:active {
+  transform: scale(0.94);
+}
+
+.dot {
+  display: block;
+  height: 8px;
+  width: 8px;
+  border-radius: 4px;
+  background: var(--color-border-strong);
+  transition:
+    width 0.3s var(--ease-soft),
+    background-color 0.2s;
+}
+
+.dotCurrent {
+  width: 28px;
+  background: var(--color-brand-light);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dotButton:hover .dot:not(.dotCurrent) {
+    background: var(--color-text-3);
+  }
+}

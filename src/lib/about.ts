@@ -5,7 +5,7 @@ export type Principle = {
 
 export const ABOUT = {
   eyebrow: "Sobre nós",
-  title: "Nosso propósito é tornar a tecnologia uma aliada do seu negócio",
+  title: "Nossa missão é tornar a tecnologia uma aliada do seu negócio",
   intro: {
     label: "Quem somos",
     highlight:

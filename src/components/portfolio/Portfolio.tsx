@@ -1,8 +1,9 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { SECTION_TITLE_LG_CLASSES, SectionHeading } from "@/components/ui/SectionHeading";
-import { PORTFOLIO_HEADER, PORTFOLIO_PROJECTS } from "@/lib/portfolio";
-import { ProjectCard } from "./ProjectCard";
-import { PortfolioCta } from "./PortfolioCta";
+import { cn } from "@/lib/cn";
+import { PORTFOLIO_HEADER } from "@/lib/portfolio";
+import { PortfolioMobileList } from "./PortfolioMobileList";
+import { PortfolioShowcase } from "./PortfolioShowcase";
 
 export function Portfolio() {
   return (
@@ -11,28 +12,21 @@ export function Portfolio() {
       aria-labelledby="portfolio-titulo"
       className="bg-surface-1 py-20 lg:py-[120px]"
     >
-      <div className="container-page flex flex-col gap-12 lg:gap-16">
+      <div className="container-page flex flex-col gap-10 lg:gap-14">
         <Reveal>
           <SectionHeading
             id="portfolio-titulo"
             eyebrow={PORTFOLIO_HEADER.eyebrow}
             title={PORTFOLIO_HEADER.title}
-            aside={PORTFOLIO_HEADER.subtitle}
-            titleClassName={SECTION_TITLE_LG_CLASSES}
+            titleClassName={cn(SECTION_TITLE_LG_CLASSES, "lg:max-w-[640px]")}
           />
         </Reveal>
 
-        <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
-          {PORTFOLIO_PROJECTS.map((project, index) => (
-            <Reveal key={project.id} as="li" delay={index * 0.1}>
-              <ProjectCard project={project} />
-            </Reveal>
-          ))}
-        </ul>
-
-        <Reveal delay={0.3}>
-          <PortfolioCta />
-        </Reveal>
+        {/* Desktop (lista + prévia) e mobile (empilhado): só uma aparece por vez. */}
+        <div className="lg:mt-6">
+          <PortfolioShowcase className="hidden lg:grid" />
+          <PortfolioMobileList className="flex lg:hidden" />
+        </div>
       </div>
     </section>
   );
