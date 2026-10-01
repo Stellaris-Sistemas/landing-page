@@ -35,7 +35,7 @@ export const HERO = {
 } as const;
 
 export const SECTIONS = [
-  { id: "servicos", eyebrow: "Serviços", title: "O que construímos para a sua empresa" },
+  { id: "servicos", eyebrow: "Serviços", title: "O que construímos para a sua empresa" },
   {
     id: "processo",
     eyebrow: "Como trabalhamos",

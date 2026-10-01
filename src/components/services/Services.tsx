@@ -19,7 +19,16 @@ export function Services() {
           <SectionHeading
             id="servicos-titulo"
             eyebrow={SERVICES_SECTION.eyebrow}
-            title={SERVICES_SECTION.title}
+            // Quebra de linha pedida explicitamente neste ponto exato (não
+            // depende da largura da caixa, ao contrário de um espaço não
+            // separável); só no desktop, para não forçar uma 3ª linha no
+            // mobile, onde o texto já quebra naturalmente em duas.
+            title={
+              <>
+                O que construímos para
+                <br className="hidden lg:block" />a sua empresa
+              </>
+            }
             titleClassName={SECTION_TITLE_LG_CLASSES}
           />
         </Reveal>

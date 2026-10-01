@@ -17,8 +17,19 @@ export function Portfolio() {
           <SectionHeading
             id="portfolio-titulo"
             eyebrow={PORTFOLIO_HEADER.eyebrow}
-            title={PORTFOLIO_HEADER.title}
-            titleClassName={cn(SECTION_TITLE_LG_CLASSES, "lg:max-w-[640px]")}
+            // Quebra de linha pedida explicitamente neste ponto exato; só no
+            // desktop, para não forçar uma 3ª linha no mobile. A largura
+            // precisa ser suficiente para "Conheça alguns dos projetos"
+            // caber inteiro na primeira linha (640px não bastava).
+            title={
+              <>
+                Conheça alguns dos projetos
+                <br className="hidden lg:block" />
+                que já entregamos
+              </>
+            }
+            titleClassName={cn(SECTION_TITLE_LG_CLASSES, "lg:max-w-[900px]")}
+            wrapperClassName="max-w-[760px] lg:max-w-[900px]"
           />
         </Reveal>
 
