@@ -1,0 +1,129 @@
+/* Ângulo do feixe orbital como custom property animável: sem @property, o
+   navegador não consegue interpolar um conic-gradient suavemente entre
+   frames (ele "pularia" em vez de girar). */
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ---------- Pílula de vidro (Fale conosco do header; e-mail/Instagram do Contato) ---------- */
+.glass {
+  background: color-mix(in srgb, var(--color-brand-light) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-glow) 38%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 0 24px color-mix(in srgb, var(--color-brand) 20%, transparent);
+  backdrop-filter: blur(10px);
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+.glass:hover,
+.glass:focus-visible,
+.glass:focus-within {
+  border-color: var(--color-glow);
+  box-shadow: 0 0 32px color-mix(in srgb, var(--color-brand) 55%, transparent);
+}
+
+.glass:focus-visible {
+  outline: 2px solid var(--color-glow);
+  outline-offset: 3px;
+}
+
+/* Pílulas de vidro mais largas (links do Contato): o mesmo box-shadow do
+   header parece mais intenso num contorno maior, então o brilho do hover é
+   mais sutil aqui. */
+.glass.glassWide:hover,
+.glass.glassWide:focus-visible,
+.glass.glassWide:focus-within {
+  box-shadow: 0 0 20px color-mix(in srgb, var(--color-brand) 30%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass {
+    transition: none;
+  }
+}
+
+/* ---------- Pílula transparente (O que fazemos do hero) ---------- */
+.ghost {
+  border: 1px solid var(--color-border);
+  background: transparent;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.ghost:hover,
+.ghost:focus-visible {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-1);
+}
+
+.ghost:focus-visible {
+  outline: 2px solid var(--color-glow);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ghost {
+    transition: none;
+  }
+}
+
+/* ---------- Pílula principal com feixe orbital (Fale conosco do hero e do menu mobile) ---------- */
+.beamWrapper {
+  --beam-angle: 0deg;
+  position: relative;
+  display: inline-flex;
+  padding: 1.5px;
+  border-radius: 999px;
+  background: conic-gradient(
+    from var(--beam-angle),
+    color-mix(in srgb, var(--color-glow) 16%, transparent) 0deg,
+    color-mix(in srgb, var(--color-glow) 16%, transparent) 250deg,
+    var(--color-glow) 318deg,
+    #ffffff 338deg,
+    color-mix(in srgb, var(--color-glow) 16%, transparent) 360deg
+  );
+  animation: beamSpin 3.2s linear infinite;
+  box-shadow: 0 0 40px color-mix(in srgb, var(--color-brand) 45%, transparent);
+}
+
+.beamWrapper:focus-visible {
+  outline: 2px solid var(--color-glow);
+  outline-offset: 3px;
+}
+
+@keyframes beamSpin {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beamWrapper {
+    animation: none;
+    transition: none;
+  }
+}
+
+.beamInner {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 30px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--color-brand-hover) 0%, var(--color-brand) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}

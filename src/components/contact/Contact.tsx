@@ -4,10 +4,10 @@ import { SECTION_TITLE_LG_CLASSES, SectionHeading } from "@/components/ui/Sectio
 import { cn } from "@/lib/cn";
 import { SECTIONS } from "@/lib/constants";
 import { contact, whatsappHref } from "@/lib/contact";
-import { ContactBeamButton } from "./ContactBeamButton";
 import { ContactLinks } from "./ContactLinks";
 import { ContactQrCard } from "./ContactQrCard";
 import { ContactTrails } from "./ContactTrails";
+import { WhatsAppButton } from "./WhatsAppButton";
 
 const CONTACT_SECTION = SECTIONS.find((section) => section.id === "contato")!;
 
@@ -45,13 +45,13 @@ export function Contact() {
           </Reveal>
 
           <Reveal delay={0.1} className="flex flex-col items-stretch gap-4 lg:items-start">
-            <ContactBeamButton
+            <WhatsAppButton
               href={whatsappHref()}
               icon={<MessageCircle aria-hidden="true" size={20} strokeWidth={1.9} />}
               className="w-full lg:w-auto"
             >
               Conversar no WhatsApp
-            </ContactBeamButton>
+            </WhatsAppButton>
             <p className="flex items-center gap-2 text-[13px] text-text-2 lg:text-sm">
               <Clock aria-hidden="true" size={16} className="shrink-0" />
               {contact.hours}

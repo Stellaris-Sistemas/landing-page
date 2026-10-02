@@ -1,41 +1,40 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import styles from "./button.module.css";
 
 type ButtonProps = {
   href: string;
-  variant?: "solid" | "ghost";
-  size?: "md" | "lg";
+  variant?: "glass" | "ghost";
   className?: string;
   onClick?: () => void;
   children: ReactNode;
 };
 
-const variants = {
-  solid: "bg-brand text-text font-semibold hover:bg-brand-hover",
-  ghost: "border border-border text-text font-medium hover:border-border-strong hover:bg-surface-1",
-};
+// Cada variante tem uma altura própria fixa (não um "size" livre), porque é
+// assim que o novo estilo de pílulas foi especificado: vidro (header) sempre
+// 44px, transparente (hero) sempre 57px.
+const VARIANTS = {
+  glass: {
+    module: styles.glass,
+    classes: "h-11 px-[18px] text-sm font-medium text-text",
+  },
+  ghost: {
+    module: styles.ghost,
+    classes: "h-[57px] px-7 text-base font-medium text-text",
+  },
+} as const;
 
-const sizes = {
-  md: "h-11 px-5 text-sm",
-  lg: "h-[55px] px-[26px] text-[15px]",
-};
+export function Button({ href, variant = "glass", className, onClick, children }: ButtonProps) {
+  const { module, classes } = VARIANTS[variant];
 
-export function Button({
-  href,
-  variant = "solid",
-  size = "md",
-  className,
-  onClick,
-  children,
-}: ButtonProps) {
   return (
     <a
       href={href}
       onClick={onClick}
       className={cn(
-        "inline-flex items-center justify-center gap-2.5 rounded-btn whitespace-nowrap transition-colors duration-200",
-        variants[variant],
-        sizes[size],
+        "inline-flex items-center justify-center gap-2.5 rounded-full whitespace-nowrap",
+        module,
+        classes,
         className,
       )}
     >

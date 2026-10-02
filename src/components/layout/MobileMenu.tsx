@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { Logo } from "@/components/brand/Logo";
-import { Button } from "@/components/ui/Button";
+import { BeamButton } from "@/components/ui/BeamButton";
 import { CONTACT_CTA, NAV_LINKS } from "@/lib/constants";
 
 type MobileMenuProps = {
@@ -116,14 +116,9 @@ export function MobileMenu({ id, open, onClose }: MobileMenuProps) {
           ))}
         </ul>
 
-        <Button
-          href={CONTACT_CTA.href}
-          size="lg"
-          onClick={closeAfterNavigation}
-          className="mt-10 w-full"
-        >
+        <BeamButton href={CONTACT_CTA.href} onClick={closeAfterNavigation} className="mt-10 w-full">
           {CONTACT_CTA.label}
-        </Button>
+        </BeamButton>
       </nav>
     </div>
   );

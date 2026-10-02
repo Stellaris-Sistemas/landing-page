@@ -55,7 +55,9 @@ export function Header() {
           </nav>
 
           <div className="hidden justify-self-end lg:block">
-            <Button href={CONTACT_CTA.href}>{CONTACT_CTA.label}</Button>
+            <Button variant="glass" href={CONTACT_CTA.href}>
+              {CONTACT_CTA.label}
+            </Button>
           </div>
 
           <button

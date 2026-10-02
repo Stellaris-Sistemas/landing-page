@@ -35,20 +35,15 @@ export function Hero() {
         </p>
 
         <div
-          className="hero-item mt-3 flex max-w-[540px] flex-col gap-4 lg:max-w-none lg:flex-row-reverse lg:justify-end"
+          className="hero-item mt-3 flex max-w-[540px] flex-col gap-4 lg:max-w-none lg:flex-row"
           style={delay(0.32)}
         >
+          <Button href={HERO.secondaryCta.href} variant="ghost" className="w-full lg:w-auto">
+            {HERO.secondaryCta.label}
+          </Button>
           <BeamButton href={CONTACT_CTA.href} className="w-full lg:w-auto">
             {CONTACT_CTA.label}
           </BeamButton>
-          <Button
-            href={HERO.secondaryCta.href}
-            variant="ghost"
-            size="lg"
-            className="w-full lg:w-auto"
-          >
-            {HERO.secondaryCta.label}
-          </Button>
         </div>
       </div>
     </section>
