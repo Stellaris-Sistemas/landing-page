@@ -25,8 +25,9 @@ export function Services() {
             // mobile, onde o texto já quebra naturalmente em duas.
             title={
               <>
-                O que construímos para
-                <br className="hidden lg:block" />a sua empresa
+                O que construímos para{" "}
+                <br className="hidden lg:block" />
+                a sua empresa
               </>
             }
             titleClassName={SECTION_TITLE_LG_CLASSES}

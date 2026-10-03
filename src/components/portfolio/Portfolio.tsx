@@ -23,7 +23,7 @@ export function Portfolio() {
             // caber inteiro na primeira linha (640px não bastava).
             title={
               <>
-                Conheça alguns dos projetos
+                Conheça alguns dos projetos{" "}
                 <br className="hidden lg:block" />
                 que já entregamos
               </>
