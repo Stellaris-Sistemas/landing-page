@@ -17,7 +17,7 @@ export function Hero() {
         <StarTrails />
       </div>
 
-      <div className="container-page flex flex-col justify-end gap-7 pb-12 lg:justify-center lg:py-16">
+      <div className="container-page flex flex-col justify-end gap-5 pb-8 lg:justify-center lg:gap-7 lg:py-16">
         <h1
           id="inicio-titulo"
           className="hero-item heading-display max-w-[680px] text-[clamp(2.25rem,1.507rem+3.048vw,4.25rem)] text-text"
@@ -35,7 +35,7 @@ export function Hero() {
         </p>
 
         <div
-          className="hero-item mt-3 flex max-w-[540px] flex-col gap-4 lg:max-w-none lg:flex-row"
+          className="hero-item flex max-w-[540px] flex-col gap-4 lg:mt-3 lg:max-w-none lg:flex-row"
           style={delay(0.32)}
         >
           <Button href={HERO.secondaryCta.href} variant="ghost" className="w-full lg:w-auto">

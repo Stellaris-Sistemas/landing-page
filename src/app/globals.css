@@ -215,7 +215,12 @@
 
   .hero {
     margin-top: calc(-1 * var(--header-h));
-    padding-top: calc(var(--header-h) + 320px);
+    /* 320px → 180px: no mobile, a svh pequena (barra de endereço expandida)
+       deixava o botão "Fale conosco" abaixo da dobra, exigindo rolagem antes
+       mesmo da primeira pintura. Reduzido junto com o top de .hero-visual
+       logo abaixo (mesmo delta de 140px), então a distância entre a ponta da
+       estrela e o título não muda, só o espaço vazio acima da estrela. */
+    padding-top: calc(var(--header-h) + 180px);
     min-height: 100svh;
 
     @media (width >= 64rem) {
@@ -226,7 +231,7 @@
 
   .hero-visual {
     position: absolute;
-    top: var(--header-h);
+    top: calc(var(--header-h) - 140px);
     left: 50%;
     width: 480px;
     aspect-ratio: 1;
